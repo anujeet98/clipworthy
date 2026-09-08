@@ -34,8 +34,15 @@ function formatTimestamp(totalSeconds: number): string {
   return `${m}:${`${s}`.padStart(2, "0")}`;
 }
 
-/** Clamp, dedupe, sort and cap the raw model output. */
-function normaliseMoments(raw: ModelMoment[], videoId: string, maxEnd: number): Moment[] {
+/**
+ * Clamp, dedupe, sort and cap the raw model output.
+ * Exported for unit testing — not part of the public pipeline surface.
+ */
+export function normaliseMoments(
+  raw: ModelMoment[],
+  videoId: string,
+  maxEnd: number,
+): Moment[] {
   const { minSeconds, maxSeconds } = pipelineConfig.clip;
   const seen = new Set<number>();
 
