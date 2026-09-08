@@ -1,36 +1,47 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Clipworthy
 
-## Getting Started
+Paste a YouTube link, get the viral moments — funniest, most quotable, most
+share-worthy segments with exact timestamps.
 
-First, run the development server:
+Built incrementally on free tiers. See [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md)
+for the design and roadmap.
+
+## Status
+
+**v1 — timestamps only.** Reads the transcript and returns ranked moments with
+hooks and deep links. No video processing yet.
+
+## Local setup
 
 ```bash
+npm install
+cp .env.example .env.local   # add your ANTHROPIC_API_KEY
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open http://localhost:3000.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Stack
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Next.js 16 (App Router) + TypeScript
+- Tailwind CSS v4, token-based design system (`src/app/globals.css`)
+- Anthropic SDK (Claude) for moment detection
+- Zod for boundary validation
 
-## Learn More
+## Project layout
 
-To learn more about Next.js, take a look at the following resources:
+| Path | Purpose |
+| --- | --- |
+| `src/app/` | Routes and the single API endpoint (`api/moments`) |
+| `src/lib/` | Framework-agnostic domain logic (the real code) |
+| `src/lib/moments/` | Detection pipeline, prompt, shared schema |
+| `src/lib/youtube/` | URL parsing, transcript, metadata |
+| `src/components/ui/` | Design-system primitives — compose, don't fork |
+| `src/components/moments/` | Feature components |
+| `docs/` | Architecture and roadmap |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Contributing / tracking
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Work is tracked in **GitHub Issues** (also serves as the project memory).
+Labels: \`v1\`\`v2\`\`v3\` for roadmap phase, \`type:feature\`\`type:bug\`\`type:chore\`,
+\`area:pipeline\`\`area:ui\`\`area:infra\`\`area:docs\`.

@@ -1,26 +1,54 @@
 @import "tailwindcss";
 
+/**
+ * Design tokens — the single source of truth for colour, radius, and shadow.
+ * Components consume these via Tailwind utilities (e.g. `bg-surface`,
+ * `text-muted`, `rounded-card`). Never hard-code hex values in components.
+ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-bg: #0b0b0f;
+  --color-surface: #15151d;
+  --color-surface-raised: #1d1d28;
+  --color-border: #2a2a38;
+  --color-foreground: #f2f2f5;
+  --color-muted: #a1a1b5;
+  --color-primary: #ff4d6d;
+  --color-primary-hover: #ff3355;
+  --color-primary-foreground: #ffffff;
+  --color-accent: #7c5cff;
+  --color-success: #37d399;
+  --color-warning: #ffb020;
+
+  --radius-card: 14px;
+  --radius-control: 10px;
+
+  --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.4), 0 8px 24px rgba(0, 0, 0, 0.25);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+  --color-bg: var(--color-bg);
+  --color-surface: var(--color-surface);
+  --color-surface-raised: var(--color-surface-raised);
+  --color-border: var(--color-border);
+  --color-foreground: var(--color-foreground);
+  --color-muted: var(--color-muted);
+  --color-primary: var(--color-primary);
+  --color-primary-hover: var(--color-primary-hover);
+  --color-primary-foreground: var(--color-primary-foreground);
+  --color-accent: var(--color-accent);
+  --color-success: var(--color-success);
+  --color-warning: var(--color-warning);
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --radius-card: var(--radius-card);
+  --radius-control: var(--radius-control);
+
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-bg);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
 }
