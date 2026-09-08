@@ -40,8 +40,8 @@ Open http://localhost:3000.
 | `src/components/moments/` | Feature components |
 | `docs/` | Architecture and roadmap |
 
-## Contributing / tracking
+## Contributing
 
-Work is tracked in **GitHub Issues** (also serves as the project memory).
-Labels: \`v1\`\`v2\`\`v3\` for roadmap phase, \`type:feature\`\`type:bug\`\`type:chore\`,
-\`area:pipeline\`\`area:ui\`\`area:infra\`\`area:docs\`.
+Branch → PR → review → squash-merge. `main` is protected. See
+[`CONTRIBUTING.md`](CONTRIBUTING.md). Work is tracked in **GitHub Issues**, which
+also serve as the project memory.

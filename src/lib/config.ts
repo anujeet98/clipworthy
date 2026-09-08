@@ -19,9 +19,13 @@ const serverEnvSchema = z.object({
  * which is intentional — secrets must never reach the browser bundle.
  */
 export const serverEnv = (() => {
-  // Skip validation during `next build`'s static analysis phase where env vars
-  // may be intentionally absent; routes validate again at request time.
-  if (process.env.NEXT_PHASE === "phase-production-build") {
+  // Skip validation during `next build`'s static analysis phase and under the
+  // test runner, where the key is intentionally absent; the API route validates
+  // again at request time.
+  if (
+    process.env.NEXT_PHASE === "phase-production-build" ||
+    process.env.VITEST
+  ) {
     return {
       ANTHROPIC_API_KEY: process.env.ANTHROPIC_API_KEY ?? "",
       ANTHROPIC_MODEL: process.env.ANTHROPIC_MODEL ?? "claude-sonnet-5",
